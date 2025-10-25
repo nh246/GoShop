@@ -3,7 +3,6 @@ import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import imagekit from "@/configs/imagekit";
 import prisma from "@/lib/prisma";
-import { err } from "inngest/types";
 
 // add new product
 
@@ -18,13 +17,13 @@ export async function POST(request) {
 
     // get the data from the form
 
-    const fromData = await request.fromData();
-    const name = fromData.get("name");
-    const description = fromData.get("description");
-    const mrp = Number(fromData.get("mrp"));
-    const price = Number(fromData.get("price"));
-    const category = fromData.get("category");
-    const images = fromData.getAll("images");
+    const formData = await request.formData();
+    const name = formData.get("name");
+    const description = formData.get("description");
+    const mrp = Number(formData.get("mrp"));
+    const price = Number(formData.get("price"));
+    const category = formData.get("category");
+    const images = formData.getAll("images");
 
     if (
       !name ||

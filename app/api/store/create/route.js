@@ -1,22 +1,22 @@
 import prisma from "@/lib/prisma";
+import imagekit from "@/configs/imagekit";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import respond from "./../../../../node_modules/imagekit/dist/utils/respond.d";
-import imagekit from "./../../../../configs/imagekit";
+
 //  create store route
 
 export async function POST(request) {
   try {
     const { userId } = getAuth(request);
     //  get the data from the from
-    const fromData = await request.formData();
-    const name = fromData.get("name");
-    const username = fromData.get("username");
-    const description = fromData.get("description");
-    const email = fromData.get("email");
-    const contact = fromData.get("contact");
-    const address = fromData.get("address");
-    const image = fromData.get("image");
+    const formData = await request.formData();
+    const name = formData.get("name");
+    const username = formData.get("username");
+    const description = formData.get("description");
+    const email = formData.get("email");
+    const contact = formData.get("contact");
+    const address = formData.get("address");
+    const image = formData.get("image");
 
     if (
       !name ||
@@ -130,7 +130,7 @@ export async function GET(request) {
       return NextResponse.json({ status: store.status });
     }
 
-   return NextResponse.json({ status: "not registered" }); 
+    return NextResponse.json({ status: "not registered" });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

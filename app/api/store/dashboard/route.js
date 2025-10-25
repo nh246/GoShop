@@ -4,7 +4,6 @@ import prisma from "@/lib/prisma";
 import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { to } from "./../../../../.next/static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_61dcf9ba._";
 
 export async function GET(request) {
   try {

@@ -1,12 +1,12 @@
 import prisma from "@/lib/prisma";
 import authSeller from "@/middlewares/authSeller";
 import { getAuth } from "@clerk/nextjs/server";
-import { err } from "inngest/types";
+
 import { NextResponse } from "next/server";
 
 // toggle the stock of the product
 
-export async function POST(params) {
+export async function POST(request) {
   try {
     const { userId } = getAuth(request);
     const { productId } = await request.json();
